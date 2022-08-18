@@ -1,4 +1,4 @@
-clc; clear all; close all; tic
+clear all; close all; tic
 
 
 prompt = "Give source organ: ";
@@ -17,9 +17,17 @@ size_image = xdim*ydim*zdim;
 
 %load image
 if size_image == 65536000
-    fid = fopen('mousemap-256.bin');
-elseif size_image == 8192000
-    fid = fopen('mousemap-128.raw');
+    path = 'mouse-maps/256x/';
+    fid = fopen([path,'mousemap-256.bin']);
+elseif size_image == 6553600
+    path = 'mouse-maps/128x/';
+    fid = fopen([path,'mousemap-128.bin']);
+elseif size_image == 1078000
+    path = 'mouse-maps/70x/';
+    fid = fopen([path, 'mousemap-70.bin']);
+elseif size_image == 1007584
+    path = 'mouse-maps/74x/';
+    fid = fopen([path,'mousemap-74.bin']);
 end
 
 data = fread(fid,size_image,'float','l');
@@ -28,7 +36,7 @@ fclose(fid);
 %reshape to 3D! Otherwise your data is only 1D array
 map = reshape(data, [xdim, ydim, zdim]);
 %This command below is only needed for visualization in Matlab
-imagesc(map(:,:,500));
+imagesc(map(:,:,zdim/2));
 
 organs = {'heart'; 'liver'; 'lungs'; 'stomach wall'; 'pancreas'; 
     'kidneys'; 'spleen'; 'small intestine'; 'large intestine'; 
@@ -42,10 +50,11 @@ source = zeros(xdim, ydim, zdim);
 
 source(map == targetMapval) = 1; 
 
-path = [sourceorgan, '/data/'];
+organres = strcat(sourceorgan, '-', string(xdim));
+path = strcat(organres, '/data/');
 
-% unit is
-name_source = sprintf([path, 'Source_', sourceorgan, '.img']);
+
+name_source = sprintf(strcat(path, 'Source_', organres, '.img'));
 fileID = fopen(name_source, 'w');
 fwrite(fileID, source,'float','l');
 fclose(fileID);
@@ -56,12 +65,12 @@ total_acc_A = sum(sum(sum(source)));
 source_normalized = source./total_acc_A;
 
 % now it's a unitless probability image
-name_source_normalized = sprintf([path, 'Source_normalized_', sourceorgan, '.raw']);
+name_source_normalized = sprintf(strcat(path, 'Source_normalized_', organres, '.raw'));
 fileID = fopen(name_source_normalized, 'w');
 fwrite(fileID, source_normalized, 'float', 'l');
 fclose(fileID);
 
-name_total_acc = sprintf([path, 'TotalAccA_', sourceorgan, '.txt']);
+name_total_acc = sprintf(strcat(path, 'TotalAccA_', organres, '.txt'));
 fileID = fopen(name_total_acc, 'w');
 fprintf(fileID, '%.2f', total_acc_A);
 fclose(fileID);

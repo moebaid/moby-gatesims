@@ -5,11 +5,9 @@ clear all; close all; clc; restoredefaultpath; tic
 prompt = "Give source organ: ";
 sourceorgan = input(prompt, 's');
 
-path = [sourceorgan, '/'];
-addpath(path);
-addpath([path, '/data/']);
-addpath([path, '/output/']);
-
+addpath(sourceorgan);
+addpath([sourceorgan, '/data/']);
+addpath([sourceorgan, '/output/']);
 
 % Load patient specific total accumulated activity of whole image:
 Total_Acc=importdata(['TotalAccA_', sourceorgan, '.txt']);  % units of voxels in organ 
@@ -30,6 +28,7 @@ listDose_images = dir([sourceorgan, '/output/*-Dose.raw']);  % dir-command loads
 listofDose_images = {listDose_images.name};
 listEdep_images = dir([sourceorgan, '/output/*-Edep.raw']);  % dir-command loads all files with ending -Dose.raw
 listofEdep_images = {listEdep_images.name};
+
 % number of voxels
 prompt='Give number of voxels in x: ';
 xdim=input(prompt);
@@ -48,7 +47,7 @@ prompt='Give voxel size in mm in z: ';
 zsize=input(prompt);
 size_image=xdim*ydim*zdim;
 
-Volume_voxel=xsize*ysize*zsize/1000; % to convert from mm^3 to ccm=ml
+% Volume_voxel=xsize*ysize*zsize/1000; % to convert from mm^3 to ccm=ml
 
 % Total_Acc=Total_Acc*Volume_voxel; 
 

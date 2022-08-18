@@ -1,0 +1,7 @@
+NDims = 3
+DimSize = xdim ydim zdim
+ElementSpacing = xsize ysize zsize
+ElementNumberOfChannels = 1
+ElementByteOrderMSB = False
+ElementType = MET_FLOAT
+ElementDataFile = CT-x.raw
