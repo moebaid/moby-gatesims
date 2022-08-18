@@ -10,9 +10,12 @@ end_sim = int(args[5])
 no_events_split = int(totalevents/no_splits)
 
 # read macro file
-macro_path =  organ + '/main_normalized-SPLIT.mac'
+path = 'scratch/mobysplitsims/' + organ
+macro_path =  path + '/main_normalized-SPLIT.mac'
 f=open(macro_path)
 macro = f.read()
+
+
 
 for i in range(start_sim, end_sim + 1):
 	number_split = str(i)
@@ -29,7 +32,7 @@ for i in range(start_sim, end_sim + 1):
 	new_macro = new_macro.replace('stat-SPLIT.txt', name_stat)
 
 	# save
-	name_macro = organ + '/main_normalized_' + number_split + '.mac'
+	name_macro = path + '/main_normalized_' + number_split + '.mac'
 
 	fileID = open(name_macro, 'w')
 	fileID.write(new_macro)
