@@ -27,9 +27,7 @@ sed -i  "/ntasks/s/x/${num_splits}/" runmobysplitsim.sh
 
 sbatch runmobysplitsim.sh $organ $start_sim $end_sim 
 
-wait
-wait
-wait 
+sleep 2 
 
 # reset the file 
 sed -i  "/output/s/${organ}_${start_sim}-${end_sim}.out/x.out/" runmobysplitsim.sh

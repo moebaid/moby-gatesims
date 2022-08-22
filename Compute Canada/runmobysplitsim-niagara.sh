@@ -18,5 +18,6 @@ end_sim=$3
 # perform remaining iterations
 for (( n=$start_sim; n<=$end_sim; n++ )); do
     singularity exec -B /home -B /project -B /scratch gate9.2.sif bash $SCRATCH/mobysplitsim.sh $organ $n
-    echo "$organ: Simulation ${n} submitted"
+    echo "${organ}: Simulation ${n} submitted"
+    sleep 3
 done
