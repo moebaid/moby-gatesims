@@ -24,7 +24,8 @@ python3 splitbash.py $organ $start_sim $end_sim
 cd ~/scratch
 
 # start editing the file and run first iteration
-sed -i  "/output/s/x.out/${organ}_${start_sim}.out/" runmobysplitsim.sh 
+sed -i  "/output/s/x.out/${organ}_${start_sim}.out/" runmobysplitsim.sh
+sed -i  "/job-name/s/x/${organ}_${start_sim}/" runmobysplitsim.sh
 # sed -i  "s/your.email/${email}/" runmobysplitsim.sh
 sed -i  "/singularity/s/x.sh/${start_sim}.sh/" runmobysplitsim.sh 
 sbatch runmobysplitsim.sh
@@ -33,6 +34,7 @@ echo "$organ: Simulation ${start_sim} submitted"
 # perform remaining iterations
 for (( n=$((start_sim+1)); n<=$end_sim; n++ )); do
     sed -i  "/output/s/$((n-1)).out/${n}.out/" runmobysplitsim.sh
+    sed -i  "/job-name/s/$((n-1))/${n}/" runmobysplitsim.sh
     sed -i  "/singularity/s/$((n-1)).sh/${n}.sh/" runmobysplitsim.sh 
     sbatch runmobysplitsim.sh
     echo "$organ: Simulation ${n} submitted"
@@ -40,6 +42,7 @@ done
 
 
 # reset the file 
-sed -i  "/output/s/${organ}_${end_sim}.out/x.out/" runmobysplitsim.sh 
+sed -i  "/output/s/${organ}_${end_sim}.out/x.out/" runmobysplitsim.sh
+sed -i  "/job-name/s/${organ}_${end_sim}/x/" runmobysplitsim.sh
 #sed -i  "s/${email}/your.email/" runmobysplitsim.sh
 sed -i  "/singularity/s/${end_sim}.sh/x.sh/" runmobysplitsim.sh 
