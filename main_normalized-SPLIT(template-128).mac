@@ -106,7 +106,7 @@
 # then check verbose output for source - is there the total activity in 1 Bq? Then it was read correctly. 
 # In any way, GATE is simulating the number of primaries!
 /gate/source/Lu177Source/imageReader/linearTranslator/setScale 1 Bq
-/gate/source/Lu177Source/imageReader/readFile data/Source_normalized_kidneys-70.mhd
+/gate/source/Lu177Source/imageReader/readFile data/xxx.mhd
 
 # Source has always to be shifted to -1/2 of its total length in x,y,z
 /gate/source/Lu177Source/setPosition -18.56 -18.56 -58 mm
