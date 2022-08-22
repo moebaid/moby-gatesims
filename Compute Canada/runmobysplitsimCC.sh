@@ -2,8 +2,9 @@
 
 #SBATCH --time=7000
 #SBATCH --output=x.out
-#SBATCH --mem-per-cpu=2G
-#SBATCH --cpus-per-task=8
+#SBATCH --job-name=x
+#SBATCH --mem-per-cpu=1G
+#SBATCH --cpus-per-task=1
 #SBATCH --mail-user=your.email
 #SBATCH --mail-type=ALL
 

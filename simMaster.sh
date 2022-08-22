@@ -18,5 +18,6 @@ python3 splitmacros.py $organ $num_splits $totalevents $start_sim $end_sim
 
 cd ${organ}
 for (( n=$start_sim; n<=$end_sim; n++ )); do
-    nohup docker run -i --rm -v $PWD:/APP opengatecollaboration/gate main_normalized_${n}.mac > ${organ}.out &
+    nohup docker run -i --rm -v $PWD:/APP opengatecollaboration/gate main_normalized_${n}.mac > ${organ}_${start_sim}-${end_sim}.out &
+    wait
 done
