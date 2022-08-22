@@ -14,6 +14,7 @@ read start_sim
 
 end_sim=$((start_sim + num_splits - 1))
 
+
 python3 splitmacros.py $organ $num_splits $totalevents $start_sim $end_sim 
 
 cd ${organ}
