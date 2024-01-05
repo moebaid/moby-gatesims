@@ -10,12 +10,10 @@ end_sim = int(args[5])
 no_events_split = int(totalevents/no_splits)
 
 # read macro file
-path = 'mobysplitsims/' + organ
+path = 'scratch/mobysplitsims/' + organ
 macro_path =  path + '/main_normalized-SPLIT.mac'
 f=open(macro_path)
 macro = f.read()
-
-
 
 for i in range(start_sim, end_sim + 1):
 	number_split = str(i)

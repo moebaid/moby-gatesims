@@ -72,8 +72,9 @@
 /gate/actor/dose3D/attachTo    	       phantom
 /gate/actor/dose3D/stepHitType           random
 /gate/actor/dose3D/setPosition           0 0 0 cm
-#/gate/actor/dose3D/setVoxelSize          4.7952 4.7952 4.7952 mm
+# (number of voxels)*(voxel size) in each dimension
 /gate/actor/dose3D/setSize          	46.25 46.25 115 mm
+# voxels in each dimension
 /gate/actor/dose3D/setResolution         74 74 184
 /gate/actor/dose3D/saveEveryNSeconds     3600
 /gate/actor/dose3D/enableEdep            true

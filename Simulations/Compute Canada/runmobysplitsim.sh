@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --time=7000
+#SBATCH --time=10-00:00:00
 #SBATCH --output=x.out
 #SBATCH --job-name=x
 #SBATCH --mem-per-cpu=1G
@@ -9,5 +9,9 @@
 #SBATCH --mail-type=ALL
 
 date
-module load singularity
-singularity exec -B /home -B /project -B /scratch -B /localscratch:/temp gate9.2.sif bash ~/bash/mobysplitsim_x.sh
+
+organ=$1
+n=$2
+
+module load apptainer
+apptainer exec -B /home -B /project -B /scratch $HOME/gate.sif bash $HOME/mobysplitsim.sh $organ $n
