@@ -1,0 +1,7 @@
+NDims = 3
+DimSize = 74 74 184
+ElementSpacing = 0.625 0.625 0.625
+ElementNumberOfChannels = 1
+ElementByteOrderMSB = False
+ElementType = MET_FLOAT
+ElementDataFile = CT-74.raw
